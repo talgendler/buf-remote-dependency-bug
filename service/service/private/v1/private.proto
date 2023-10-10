@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package service.private.v1;
+
+import "google/protobuf/wrappers.proto";
+import "http/errors/v1/http_errors.proto";
+import "http/generic/v1/http_generic.proto";
+import "commons/address/v1/address.proto";
+
+service ConsentPrivate {
+  // Create a consent.
+  rpc DoSomething(DoSomethingRequest) returns (DoSomethingResponse);
+  // Get a consent.
+  rpc GetCommons(GetCommonsRequest) returns (GetCommonsResponse);
+}
+
+message GetCommonsRequest {
+  google.protobuf.StringValue un_important_value = 1;
+}
+
+message GetCommonsResponse {
+  oneof result {
+    commons.address.v1.Address data = 1;
+    http.errors.v1.HttpError error = 2;
+  }
+}
+
+message DoSomethingRequest {}
+message DoSomethingResponse {
+  oneof result {
+    http.generic.v1.HttpSuccess data = 1;
+    http.errors.v1.HttpError error = 2;
+  }
+}

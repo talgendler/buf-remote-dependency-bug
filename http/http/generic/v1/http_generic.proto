@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package http.generic.v1;
+
+import "google/protobuf/wrappers.proto";
+
+message HttpSuccess {
+	google.protobuf.StringValue message = 1;
+	google.protobuf.StringValue code = 2;
+}

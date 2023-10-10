@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package http.errors.v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
+
+// Generic HTTP error
+message HttpError {
+	// Our internal code, can be something like: B2342
+	string code = 1;
+	// Error message explaining what went wrong
+	string message = 2;	
+	// Optional path to a wrong field: business_address.zip_code
+	google.protobuf.StringValue path = 3;
+	// Optional JSON field to hold whatever makes sense
+	google.protobuf.Struct extra = 4;
+}
